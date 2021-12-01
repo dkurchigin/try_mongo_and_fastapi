@@ -3,7 +3,6 @@ from typing import List
 import motor.motor_asyncio
 import simplejson as json
 
-
 MONGO_SERVER = 'mongo'
 MONGO_PORT = 27017
 USER = 'user'
@@ -15,6 +14,7 @@ database = client.employees_db
 employees_collection = database.get_collection('employees')
 
 
+# TODO покрыть тестами clear_query
 async def clear_query(some_dict: dict) -> dict:
     """ ФУНКЦИЯ ПО ОЧИСТКЕ ЗНАЧЕНИЙ, КОТОРЫЕ NONE
      Т.К. ВСЕ ПОЛЯ JSON СДЕЛАЛ НЕОБЯЗАТЕЛЬНЫМИ И ОНИ ПРИХОДЯТ NONE """
@@ -25,6 +25,7 @@ async def clear_query(some_dict: dict) -> dict:
     return result_dict
 
 
+# TODO покрыть тестами find_employees
 async def find_employees(employee_data: dict) -> dict:
     """ ФУНКЦИЯ ПО ПОИСКУ В БАЗЕ ПО ЗАПРОСУ ИЗ POST """
     results: List[dict] = []
