@@ -1,0 +1,19 @@
+version: "3"
+services:
+    mongo:
+        container_name: mongo
+        ports:
+        - "27017:27017"
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=user
+            - MONGO_INITDB_ROOT_PASSWORD=password
+            - MONGO_INITDB_DATABASE=employees_db
+        build: mongo/
+    loader:
+        container_name: loader
+        build: loader/
+    server:
+        container_name: server
+        ports:
+        - "8000:8000"
+        build: server/
