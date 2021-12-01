@@ -15,7 +15,7 @@ from server.models.employee import (
 router = APIRouter()
 
 
-@router.post("/searches", response_description="Student data added into the database")
+@router.post("/searches", response_description="Employee data added into the database")
 async def find_employees_method(employees: EmployeeSchema = Body(...)):
     """ ФУНКЦИЯ ДЛЯ ЭНДПОИНТА SEARCHES """
     employees_data = jsonable_encoder(employees)
