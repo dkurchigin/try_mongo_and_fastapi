@@ -15,11 +15,12 @@ from server.models.employee import (
 router = APIRouter()
 
 
-@router.post("/searches", response_description="Employee data added into the database")
+@router.post("/searches", response_description='Employee search in database')
 async def find_employees_method(employees: EmployeeSchema = Body(...)):
     """ ФУНКЦИЯ ДЛЯ ЭНДПОИНТА SEARCHES """
     employees_data = jsonable_encoder(employees)
-    finded_employees = await find_employees(employees_data)
-    if finded_employees:
-        return response_model(finded_employees, 'Finded employees there!')
-    return error_response_model("An error occurred.", 404, "Employees not found")
+    results = await find_employees(employees_data)
+
+    if results['employees']:
+        return response_model(results, 'Finded employees there!')
+    return error_response_model(code=404, detail='Employees not found')

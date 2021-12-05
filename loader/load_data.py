@@ -20,7 +20,7 @@ MAIN_JSON = 'employees.json'
 
 def load_json(filename: str) -> List[dict]:
     """ ЗАГРУЗКА ФАЙЛА, ВЫНЕС ОТДЕЛЬНО
-    Т.К. В ДАЛЬНЕЙШЕМ МОЖНО ЧТО_ТО НА НЕЁ НАВЕСИТЬ """
+    Т.К. В ДАЛЬНЕЙШЕМ МОЖНО ЧТО-ТО НА НЕЁ НАВЕСИТЬ """
     with open(filename, 'r') as file_handler:
         return json.load(file_handler)
 
@@ -50,6 +50,7 @@ if __name__ == "__main__":
     db = client['employees_db']
     try:
         employees = db['employees']
+        employees.delete_many({})
         logger.info(f'Try to load {MAIN_JSON}')
 
         json_data = load_json(MAIN_JSON)
